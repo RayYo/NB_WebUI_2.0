@@ -1,26 +1,42 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
+import qs from 'qs'
 import store from '@/store'
+import router from '@/router'
+import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth'
+import { urlRequestGet } from '@/utils/request-url-mapping'
 
 // create an axios instance
-const service = axios.create({
+const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
 
 // request interceptor
-service.interceptors.request.use(
+request.interceptors.request.use(
   config => {
-    // do something before request is sent
-
+    // add cookie
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
       config.headers['X-Token'] = getToken()
     }
+
+    if (process.env.NODE_ENV === 'production') {
+      // post: Processing data format
+      const { data, method } = config
+      if (method.toLocaleLowerCase() === 'post' && typeof data === 'object') {
+        let dataFormat = '{"_ds=1&'
+        dataFormat += qs.stringify(data)
+        dataFormat += '&_de=1":{}}'
+        config.data = dataFormat
+      }
+    } else {
+      config.method = 'get'
+    }
+
+    // get request URL
+    config.url = urlRequestGet(config.url)
+
     return config
   },
   error => {
@@ -31,45 +47,42 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(
-  /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
-  */
-
-  /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
+request.interceptors.response.use(
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (response.status !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
-
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
       return Promise.reject(new Error(res.message || 'Error'))
-    } else {
-      return res
     }
+
+    if (res.status === 'error' || res.status === 'fail') {
+      Message({
+        message: res.msg || 'Post Error',
+        type: 'error',
+        duration: 5 * 1000
+      })
+      return Promise.reject(new Error(res.msg || 'Post Error'))
+    }
+
+    if (res.logout === true) {
+      Message({
+        message: res.reason || 'Logout need auth',
+        type: 'error',
+        duration: 5 * 1000
+      })
+
+      store.dispatch('user/logout').then(() => {
+        router.push('/login')
+      })
+      return Promise.reject(new Error(res.reason || 'Logout need auth'))
+    }
+
+    return res
   },
   error => {
     console.log('err' + error) // for debug
@@ -82,4 +95,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+export default request

@@ -1,0 +1,48 @@
+{
+    "data":{
+      "table":[
+        {
+            "intfName": "vlan1",
+            "ip": "192.168.2.1",
+            "mac": "14-D4-35-85-20-EB",
+            "agingTime": "40",
+            "ipType": "Dynamic"
+        },
+        {
+            "intfName": "vlan2",
+            "ip": "192.168.3.1",
+            "mac": "24-D4-35-85-20-EB",
+            "agingTime": "33",
+            "ipType": "Dynamic"
+        },
+        {
+            "intfName": "vlan3",
+            "ip": "192.168.4.1",
+            "mac": "34-D4-35-85-20-EB",
+            "agingTime": "44",
+            "ipType": "Dynamic"
+        },
+        {
+            "intfName": "vlan4",
+            "ip": "192.168.11.1",
+            "mac": "44-D4-35-85-20-EB",
+            "agingTime": "15",
+            "ipType": "Dynamic"
+        },
+        {
+            "intfName": "vlan5",
+            "ip": "192.168.13.1",
+            "mac": "54-D4-35-85-20-EB",
+            "agingTime": "13",
+            "ipType": "Dynamic"
+        },
+        {
+            "intfName": "vlan6",
+            "ip": "192.168.14.1",
+            "mac": "64-D4-35-85-20-EB",
+            "agingTime": "10",
+            "ipType": "Dynamic"
+        }
+      ]
+    }
+  }

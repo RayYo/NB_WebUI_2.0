@@ -1,0 +1,12 @@
+{
+  "data":
+  {
+    "modelName":"TPE-2840WS",
+    "portNum":28,
+    "copperPortNum":24,
+    "lagNum": 8,
+    "fiberNum": 0,
+    "poeNum": 24,
+    "comboNum": 4
+  }
+}

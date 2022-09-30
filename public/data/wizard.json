@@ -1,0 +1,16 @@
+{
+  "data":
+  {
+    "account": {
+      "username": "ADMIN",
+      "password": ""
+    },
+    "time": "1647915653",
+    "ipConfig": {
+      "ip": "192.168.1.1",
+      "mask": "255.255.255.0",
+      "gw": "",
+      "dns": ""
+    }
+  }
+}

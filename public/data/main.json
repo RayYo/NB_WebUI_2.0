@@ -1,0 +1,169 @@
+{
+  "id": 2,
+  "data": {
+    "user": "root",
+    "priv": 15,
+    "title":"CS-2424G-24P V2",
+    "boardDescp":"24 Port 10/100/1000M Gigabit Web Managed PoE+ Switch with 4 SFP Ports",
+    "defVlan":  1,
+    "ports":  [{
+        "port": "GE1"
+      }, {
+        "port": "GE2"
+      }, {
+        "port": "GE3"
+      }, {
+        "port": "GE4"
+      }, {
+        "port": "GE5"
+      }, {
+        "port": "GE6"
+      }, {
+        "port": "GE7"
+      }, {
+        "port": "GE8"
+      }, {
+        "port": "GE9"
+      }, {
+        "port": "GE10"
+      }, {
+        "port": "GE11"
+      }, {
+        "port": "GE12"
+      }, {
+        "port": "GE13"
+      }, {
+        "port": "GE14"
+      }, {
+        "port": "GE15"
+      }, {
+        "port": "GE16"
+      }, {
+        "port": "GE17"
+      }, {
+        "port": "GE18"
+      }, {
+        "port": "GE19"
+      }, {
+        "port": "GE20"
+      }, {
+        "port": "GE21"
+      }, {
+        "port": "GE22"
+      }, {
+        "port": "GE23"
+      }, {
+        "port": "GE24"
+      }, {
+        "port": "GE25"
+      }, {
+        "port": "GE26"
+      }, {
+        "port": "GE27"
+      }, {
+        "port": "GE28"
+      }, {
+        "port": "LAG1"
+      }, {
+        "port": "LAG2"
+      }, {
+        "port": "LAG3"
+      }, {
+        "port": "LAG4"
+      }, {
+        "port": "LAG5"
+      }, {
+        "port": "LAG6"
+      }, {
+        "port": "LAG7"
+      }, {
+        "port": "LAG8"
+      }],
+    "lags": [{
+        "lag":  "1"
+      }, {
+        "lag":  "2"
+      }, {
+        "lag":  "3"
+      }, {
+        "lag":  "4"
+      }, {
+        "lag":  "5"
+      }, {
+        "lag":  "6"
+      }, {
+        "lag":  "7"
+      }, {
+        "lag":  "8"
+      }],
+    "menuTree": [
+      {
+        "path": "/system",
+        "component": "Layout",
+        "redirect": "/system/management",
+        "name": "System",
+        "meta": { "title": "System", "icon": "system" },
+        "children": [
+          {
+            "path": "management",
+            "name": "Management",
+            "component": "system/management",
+            "meta": { "title": "System Management", "icon": "submenu-bg" }
+          },
+          {
+            "path": "cloud",
+            "name": "Cloud",
+            "component": "system/cloud",
+            "meta": { "title": "Cloud Settings", "icon": "submenu-bg" }
+          },
+          {
+            "path": "l3Feature",
+            "name": "l3Feature",
+            "component": "system/l3-feature",
+            "redirect": "/system/l3Feature/IPV4Interface",
+            "meta": { "title": "L3 Feature", "icon": "submenu-bg" },
+            "children": [
+              {
+                "path": "IPV4Interface",
+                "name": "IPV4Interface",
+                "component": "system/L3/ipv4-interface",
+                "meta": { "title": "IPV4 Interface", "icon": "submenu-bg" }
+              },
+              {
+                "path": "IPV4ARPAgingTime",
+                "name": "IPV4ARPAgingTime",
+                "component": "system/L3/ipv4-arp-aging-time",
+                "meta": { "title": "IPV4 ARP Aging Time", "icon": "submenu-bg" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "/tools",
+        "component": "Layout",
+        "children": [
+          {
+            "path": "index",
+            "name": "Tools",
+            "component": "dashboard/index",
+            "meta": { "title": "Tools", "icon": "tools" }
+          }
+        ]
+      },
+      {
+        "path": "/save",
+        "component": "Layout",
+        "children": [
+          {
+            "path": "index",
+            "name": "Save",
+            "component": "form/index",
+            "meta": { "title": "Save", "icon": "save" }
+          }
+        ]
+      }
+    ]
+  }
+    
+}
